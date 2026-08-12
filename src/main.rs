@@ -1,5 +1,7 @@
 #![no_std]
 
+extern crate lang_start;
+
 fn main() {
     stdout(b"Hello: from main\n");
 }
