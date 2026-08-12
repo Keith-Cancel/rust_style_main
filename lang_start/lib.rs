@@ -10,6 +10,7 @@ pub fn my_start<T: Termination + 'static>(
     _argv: *const *const u8,
     _sigpipe: u8,
 ) -> isize {
+    stdout(b"In function: `my_start`\n\n");
     main().report() as isize
 }
 
@@ -30,6 +31,7 @@ pub trait Termination {
 
 impl Termination for () {
     fn report(self) -> i32 {
+        stdout(b"\nIn Termination report for: `()`\n");
         0
     }
 }
@@ -42,15 +44,36 @@ impl Termination for ! {
 
 impl Termination for i32 {
     fn report(self) -> i32 {
+        stdout(b"\nIn Termination report for: `i32`\n");
         self
     }
 }
 
 impl<T, E> Termination for Result<T, E> {
     fn report(self) -> i32 {
+        stdout(b"\nIn Termination report for: `Result<_,_>`\n");
         match self {
             Ok(_) => 0,
             Err(_) => 101,
         }
     }
+}
+
+fn stdout(buff: &[u8]) -> isize {
+    let mut ret: isize = 1;
+    let ptr = buff.as_ptr();
+    let len = buff.len();
+    unsafe {
+        core::arch::asm!(
+            "syscall",
+            in("rdi") 0,
+            in("rsi") ptr,
+            in("rdx") len,
+            inout("rax") ret,
+            out("r11") _, // syscall clobbers both rcx and r11
+            out("rcx") _,
+            options(preserves_flags, nostack),
+        );
+    }
+    return ret;
 }
