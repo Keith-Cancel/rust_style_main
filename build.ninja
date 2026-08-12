@@ -1,0 +1,10 @@
+builddir   = ./build
+edition    = 2024
+env        = RUSTC_BOOTSTRAP=1
+crate      = std_stub
+type       = lib
+opt_flags  = -C opt-level=2 -C link-dead-code=yes
+panic_flag = -C panic=abort
+
+rule rustc
+  command = $env rustc --crate-type=$type --crate-name=$crate --edition=$edition $opt_flags $panic_flag $in -o $out
