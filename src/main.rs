@@ -13,6 +13,26 @@ fn panic(_info: &core::panic::PanicInfo) -> ! {
     exit(101);
 }
 
+// Switch about to custom ABI once this is stabilized:
+// https://github.com/rust-lang/rust/pull/158504
+#[unsafe(naked)]
+#[unsafe(no_mangle)]
+pub extern "C" fn _start() {
+    core::arch::naked_asm! {
+        "xor rbp, rbp",  // clear frame register
+        "mov rdi, rsp",  // copy stack pointer to arg1,
+        "and rsp, -16",  // align stack to 16 bytes
+        "call __premain",
+        "ud2"
+    }
+}
+
+#[unsafe(no_mangle)]
+extern "C" fn __premain(_: *mut core::ffi::c_void) -> ! {
+    stdout(b"In function `__premain`\n");
+    exit(0);
+}
+
 // ==== Some basic linux sys calls ====
 
 fn exit(code: i32) -> ! {
