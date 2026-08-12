@@ -8,11 +8,6 @@ fn main() {
 
 // ==== Items needed for no_std ====
 
-#[panic_handler]
-fn panic(_info: &core::panic::PanicInfo) -> ! {
-    exit(101);
-}
-
 // Switch about to custom ABI once this is stabilized:
 // https://github.com/rust-lang/rust/pull/158504
 #[unsafe(naked)]
@@ -36,6 +31,23 @@ extern "C" fn __premain(stk: *mut core::ffi::c_void) -> ! {
     // Get the pointer to the generated rustc main, and call it.
     let ret = unsafe { lang_start::get_rustc_main()(0, core::ptr::null()) };
     exit(ret);
+}
+
+// Just define a panic handler that exits immediately.
+#[panic_handler]
+fn panic(_info: &core::panic::PanicInfo) -> ! {
+    exit(101);
+}
+
+// Define a weak symbol for rust_eh_personality to avoid any compiler
+// errors.
+core::arch::global_asm! {
+    ".text",
+    ".global rust_eh_personality",
+    ".weak rust_eh_personality",
+    ".type rust_eh_personality,@function",
+    "rust_eh_personality:",
+    "ret",
 }
 
 // ==== Some basic linux sys calls ====
