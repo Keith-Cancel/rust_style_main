@@ -3,8 +3,32 @@
 extern crate lang_start;
 
 fn main() {
-    stdout(b"Hello: from main\n");
+    stdout(b"Hello: from main() -> ()\n");
 }
+
+// Switch to these other main to see how main is now a rust style main.
+
+/*
+fn main() -> i32 {
+    stdout(b"Hello: from main() -> i32\n");
+    0
+}
+*/
+
+/*
+fn main() -> Result<(), ()> {
+    stdout(b"Hello: from main() -> Result<(), ()>\n");
+    stdout(b"Returning an Ok()\n");
+    Ok(())
+}
+*/
+
+/*
+fn main() -> Result<(), ()> {
+    stdout(b"Hello: from main() -> Result<(), ()>\n");
+    stdout(b"Returning an Err()\n");
+    Err(())
+}*/
 
 // ==== Items needed for no_std ====
 
