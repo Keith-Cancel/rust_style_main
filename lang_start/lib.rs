@@ -2,6 +2,17 @@
 #![feature(lang_items, never_type)]
 #![allow(internal_features)]
 
+/// rustc's own compiler generated `main` calls this
+#[lang = "start"]
+pub fn my_start<T: Termination + 'static>(
+    main: fn() -> T,
+    _argc: isize,
+    _argv: *const *const u8,
+    _sigpipe: u8,
+) -> isize {
+    main().report() as isize
+}
+
 #[lang = "termination"]
 pub trait Termination {
     fn report(self) -> i32;
