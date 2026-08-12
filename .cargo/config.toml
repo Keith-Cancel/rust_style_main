@@ -1,2 +1,5 @@
 [build]
-rustflags = ["--extern", "lang_start=./build/liblang_start.rlib"]
+rustflags = [
+    "-C", "link-arg=-nostartfiles",
+    "--extern", "lang_start=./build/liblang_start.rlib"
+]
