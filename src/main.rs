@@ -7,7 +7,6 @@ fn main() {
 }
 
 // Switch to these other main to see how main is now a rust style main.
-
 /*
 fn main() -> i32 {
     stdout(b"Hello: from main() -> i32\n");
@@ -48,7 +47,7 @@ pub extern "C" fn _start() {
 
 #[unsafe(no_mangle)]
 extern "C" fn __premain(stk: *mut core::ffi::c_void) -> ! {
-    stdout(b"In function `__premain`\n");
+    stdout(b"In function: `__premain`\n");
     // Omitting setting up argc and argv from the stack.
     // but these would be passed to main.
     let _ = stk;
