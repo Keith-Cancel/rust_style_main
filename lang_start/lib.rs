@@ -13,6 +13,16 @@ pub fn my_start<T: Termination + 'static>(
     main().report() as isize
 }
 
+// rustc generates a main function that uses our start function.
+#[inline(never)]
+pub fn get_rustc_main() -> unsafe extern "C" fn(isize, *const *const u8) -> i32 {
+    unsafe extern "C" {
+        #[link_name = "main"]
+        fn rustc_main(argc: isize, argv: *const *const u8) -> i32;
+    }
+    return rustc_main;
+}
+
 #[lang = "termination"]
 pub trait Termination {
     fn report(self) -> i32;
