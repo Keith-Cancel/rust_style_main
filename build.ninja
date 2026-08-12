@@ -1,5 +1,6 @@
 builddir   = ./build
 edition    = 2024
+# Lang items are an internal feature so just use RUSTC_BOOTSTRAP for the example.
 env        = RUSTC_BOOTSTRAP=1
 crate      = lang_start
 type       = lib
