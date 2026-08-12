@@ -8,3 +8,5 @@ panic_flag = -C panic=abort
 
 rule rustc
   command = $env rustc --crate-type=$type --crate-name=$crate --edition=$edition $opt_flags $panic_flag $in -o $out
+
+build $builddir/liblang_start.rlib: rustc ./lang_start/lib.rs
