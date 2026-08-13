@@ -8,8 +8,8 @@ you are not really using rust's normal `main` machinery anymore. This example
 shows how to get back to that. You still provide your own `_start`, do the tiny
 amount of setup needed, and then call the rustc generated `main` wrapper.
 
-Essentially, this example shows the pieces needed let rusts route execution back through
-rustc's generated `main` wrapper, so the user-facing `main` can still look like an
+Essentially, this example shows the pieces needed to route execution back through
+rustc's generated `main` wrapper. So then the user-facing `main` can still look like
 an ordinary rust `main()`.
 
 So from your perspective you still get to write something like:
