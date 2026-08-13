@@ -123,3 +123,10 @@ The different `main` examples are there so you can see the custom
 - `Result<_, _>` exits with `0` for `Ok(_)` and `101` for `Err(_)`
 
 Panics are set to abort, and the panic handler just exits with `101`.
+
+
+## Code from the rust compiler and library
+Here is some links to the relevant code that std uses at the time of making this, and the code where rustc generates the rustc main at compile time.
+
+- [/library/std/src/rt.rs](https://github.com/rust-lang/rust/blob/c98d0cb27cc63afdd62602a52eb4feb8a1c682dd/library/std/src/rt.rs#L199)
+- [rustc_codegen_ssa/src/base.rs](https://github.com/rust-lang/rust/blob/52d08664805c8deb47b7e86999d7f8647b424a15/compiler/rustc_codegen_ssa/src/base.rs#L524)
