@@ -63,12 +63,14 @@ to get things working.
 - To enable the unstable lang items features used by `lang_start`
 - `RUSTC_BOOTSTRAP=1`, as configured in [build.ninja](build.ninja)
 
+The ninja build just makes easy to invoke the compiler directly with the proper flags.
+
 Should you use this in real code, probably not. The point here is more to show the
 pieces involved and how they fit together.
 
 ## Building
 
-First build the `lang_start` crate:
+First build the `lang_start` crate/lib since it won't work without it:
 
 ```sh
 ninja
@@ -95,7 +97,7 @@ rustc at the helper crate/lib that ninja built.
 
 ## Notes
 
-The write syscall helper currently writes to file descriptor `1`, so when you run
+The write syscall (`stdout`) helper writes to file descriptor `1`, so when you run
 this you should see debug strings. This was mainly just for poking at the call
 flow.
 
