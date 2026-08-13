@@ -31,7 +31,7 @@ pub trait Termination {
 
 impl Termination for () {
     fn report(self) -> i32 {
-        stdout(b"\nIn Termination report for: `()`\n");
+        stdout(b"\nIn Termination::report() for: `()`\n");
         0
     }
 }
@@ -44,14 +44,14 @@ impl Termination for ! {
 
 impl Termination for i32 {
     fn report(self) -> i32 {
-        stdout(b"\nIn Termination report for: `i32`\n");
+        stdout(b"\nIn Termination::report() for: `i32`\n");
         self
     }
 }
 
 impl<T, E> Termination for Result<T, E> {
     fn report(self) -> i32 {
-        stdout(b"\nIn Termination report for: `Result<_,_>`\n");
+        stdout(b"\nIn Termination::report() for: `Result<_,_>`\n");
         match self {
             Ok(_) => 0,
             Err(_) => 101,
