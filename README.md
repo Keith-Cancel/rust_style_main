@@ -8,6 +8,10 @@ you are not really using rust's normal `main` machinery anymore. This example
 shows how to get back to that. You still provide your own `_start`, do the tiny
 amount of setup needed, and then call the rustc generated `main` wrapper.
 
+Essentially, this example shows the pieces needed let rusts route execution back through
+rustc's generated `main` wrapper, so the user-facing `main` can still look like an
+an ordinatry rust `main()`.
+
 So from the user side you still get to write something like:
 
 ```rust
@@ -52,7 +56,7 @@ _start
 
 This is intentionally experimental and low-level.
 
-It is using internal rust things, inline assembly, linux syscall numbers,
+It is using a couple internal rust things, inline assembly, linux syscalls,
 and a hand a written `_start` that I would call incomplete. Just enough
 to get things working.
 
