@@ -93,7 +93,7 @@ fn stdout(buff: &[u8]) -> isize {
     unsafe {
         core::arch::asm!(
             "syscall",
-            in("rdi") 0,
+            in("rdi") 1,
             in("rsi") ptr,
             in("rdx") len,
             inout("rax") ret,
