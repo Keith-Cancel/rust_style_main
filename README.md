@@ -97,7 +97,7 @@ rustc at the helper crate/lib that ninja built.
 
 ## Notes
 
-The write syscall (`stdout`) helper writes to file descriptor `1`, so when you run
+The write syscall (`stdout`) helper, writes to file descriptor `1`, so when you run
 this you should see debug strings. This was mainly just for poking at the call
 flow.
 
