@@ -21,8 +21,8 @@ fn main() {
 ```
 
 There are also some commented out `main`s in [src/main.rs](src/main.rs) you can
-switch to. The point is that these work more like a normal rust `main`.
-The commented out examples in can be swapped in to try other familiar return types:
+switch to. The point is that these are normal rust `main`. The commented out examples in the
+`main.rs` can be swapped in and out to try some other familiar return types:
 
 ```rust
 fn main() -> i32
