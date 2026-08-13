@@ -61,7 +61,7 @@ and a hand a written `_start` that I would call incomplete. Just enough
 to get things working.
 
 - To enable the unstable lang items features used by `lang_start`
-- `RUSTC_BOOTSTRAP=1`, as configured in [build.ninja](build.ninja)
+- `RUSTC_BOOTSTRAP=1`, is configured in [build.ninja](build.ninja)
 
 The ninja build just makes easy to invoke the compiler directly with the proper flags.
 
