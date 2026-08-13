@@ -1,6 +1,6 @@
 # Rust Style Main (Free Standing)
 
-This is a tiny freestanding demo-ing using a rust style `main` in a `#[no_std]` such a free standing binary. Since this example uses a couple raw syscalls and assembly, it only works on x86-64 linux.
+This is a tiny freestanding demo-ing using a rust style `main` in a `#[no_std]` rust free standing binary. Since this example uses a couple raw syscalls and assembly, it only works on x86-64 linux.
 
 Normally, when you are doing a `no_std` bin you end up defining your entry point such as `_start`.
 Then you just call whatever code you want from there. Which is fine, but then
