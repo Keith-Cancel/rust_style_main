@@ -50,10 +50,13 @@ _start
 
 ## Requirements / assumptions
 
-This is still example code. It is using internal rust things, inline assembly,
-linux syscall numbers, and a hand written `_start`.
+This is intentionally experimental and low-level.
 
-- Rust with support for the unstable features used by `lang_start`
+It is using internal rust things, inline assembly, linux syscall numbers,
+and a hand a written `_start` that I would call incomplete. Just enough
+to get things working.
+
+- To enable the unstable lang items features used by `lang_start`
 - `RUSTC_BOOTSTRAP=1`, as configured in [build.ninja](build.ninja)
 
 Should you use this in real code, probably not. The point here is more to show the
