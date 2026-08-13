@@ -12,7 +12,7 @@ Essentially, this example shows the pieces needed let rusts route execution back
 rustc's generated `main` wrapper, so the user-facing `main` can still look like an
 an ordinary rust `main()`.
 
-So from your perspective still get to write something like:
+So from your perspective you still get to write something like:
 
 ```rust
 fn main() {
