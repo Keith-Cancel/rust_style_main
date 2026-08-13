@@ -1,4 +1,4 @@
-# rust_style_main
+# Rust Style Main (Free Standing)
 
 This is a tiny freestanding demo-ing using a rust style `main` in a `#[no_std]` such a free standing binary.
 
@@ -10,9 +10,9 @@ amount of setup needed, and then call the rustc generated `main` wrapper.
 
 Essentially, this example shows the pieces needed let rusts route execution back through
 rustc's generated `main` wrapper, so the user-facing `main` can still look like an
-an ordinatry rust `main()`.
+an ordinary rust `main()`.
 
-So from the user side you still get to write something like:
+So from your perspective still get to write something like:
 
 ```rust
 fn main() {
@@ -79,6 +79,11 @@ Then build and run the actual bin crate:
 ```sh
 cargo run
 ```
+or 
+
+```sh
+cargo run --release
+```
 
 Cargo uses [.cargo/config.toml](.cargo/config.toml), which passes:
 
@@ -86,7 +91,7 @@ Cargo uses [.cargo/config.toml](.cargo/config.toml), which passes:
 - `--extern lang_start=./build/liblang_start.rlib`
 
 The first one keeps the C runtime start files out of it. The second one points
-rustc at the helper crate that ninja built.
+rustc at the helper crate/lib that ninja built.
 
 ## Notes
 
